@@ -12,6 +12,10 @@ class Client < ActiveRecord::Base # миграция - очередная вер
 
 end
 
+class Barber < ActiveRecord::Base
+
+end
+
 
 
 get '/' do
