@@ -4,19 +4,19 @@
 <form action="/visit" method="POST">
   <div class="mb-3">
     <label class="form-label">Ваше имя</label>
-    <input name="client[name]" type="text" class="form-control" placeholder="Введите ваше имя" value="">  <!-- client - это берётся из app.rb(c = Client.new params[:client] c.save) -->
+    <input name="client[name]" type="text" class="form-control" placeholder="Введите ваше имя" value="<%= @c.name %>">  <!-- client - это берётся из app.rb(c = Client.new params[:client] c.save) -->
     <!-- client[name] - из миграции createClients -->
 
   
 
   <div class="mb-3">
     <label class="form-label">Ваше телефон</label>
-    <input name="client[phone]" type="text" class="form-control" placeholder="телефон" value="">
+    <input name="client[phone]" type="text" class="form-control" placeholder="телефон" value="<%= @c.phone %>">
   </div>
 
   <div class="mb-3">
     <label class="form-label">Когда вас ждать?</label>
-    <input name="client[datestamp]" type="text" class="form-control" placeholder="Время записи" value="">
+    <input name="client[datestamp]" type="text" class="form-control" placeholder="Время записи" value="<%= @c.datestamp %>">
   </div>
 
  <!--  <div class="mb-3">

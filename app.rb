@@ -32,6 +32,7 @@ end
 
 
 get '/visit' do
+	@c = Client.new
 	erb :visit
 end
 
@@ -53,11 +54,11 @@ post '/visit' do
 	# c.color = @color
 	# c.save
 
-	c = Client.new params[:client]
-	if c.save # этот метод выполняет валидацию пред сохранением в БД и возвращает true если валидация пройдена и false если нет. Если валидация пройдена сохраняет в БД
+	@c = Client.new params[:client]
+	if @c.save # этот метод выполняет валидацию пред сохранением в БД и возвращает true если валидация пройдена и false если нет. Если валидация пройдена сохраняет в БД
 		erb "<h2>Спасибо, Вы записались!</h2>"
 	else
-		@error = c.errors.full_messages.first # вывод первого сообщения об ошибке
+		@error = @c.errors.full_messages.first # вывод первого сообщения об ошибке
 		erb :visit
 	end
 end
