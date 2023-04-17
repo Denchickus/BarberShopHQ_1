@@ -9,7 +9,10 @@ require 'sinatra/activerecord'
 set :database, {adapter: "sqlite3", database: "barbershop.db"} # подключение к БД
 
 class Client < ActiveRecord::Base # миграция - очередная версия нашей БД
-
+	validates :name, presence: true # валидация поля "name", проверка поля на пустое значение
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :color, presence: true
 end
 
 class Barber < ActiveRecord::Base
@@ -17,7 +20,7 @@ class Barber < ActiveRecord::Base
 end
 
 before do
-	@barbers = Barber.all
+	@barbers = Barber.all # Обёртка для запроса "SELECT * FROM barbers;"
 	#@barbers = Barber.order "created_at DESC"
 end
 
@@ -51,7 +54,7 @@ post '/visit' do
 	# c.save
 
 	c = Client.new params[:client]
-	c.save
+	c.save # этот метод выполняет валидацию пред сохранением в БД
 
 	erb "<h2>Спасибо, Вы записались!</h2>"
 end
