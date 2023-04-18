@@ -64,5 +64,6 @@ post '/visit' do
 end
 
 get '/barber/:id' do
-	erb :barber
+	@barber = Barber.find(params[:id]) # метод find принимет в качестве аргумента 
+	erb :barber					   # идентификатор и возвращает объект соответсвующий "id"
 end
