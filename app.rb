@@ -9,7 +9,7 @@ require 'sinatra/activerecord'
 set :database, {adapter: "sqlite3", database: "barbershop.db"} # подключение к БД
 
 class Client < ActiveRecord::Base # миграция - очередная версия нашей БД
-	validates :name, presence: true # валидация поля "name", проверка поля на пустое значение
+	validates :name, presence: true, length: { minimum: 3 } # валидация поля "name", проверка поля на пустое значение
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
