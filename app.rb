@@ -32,9 +32,11 @@ end
 
 
 get '/visit' do
-	@c = Client.new
-	erb :visit
-end
+	@c = Client.new # переменную @c надо создать здесь, потому что
+	erb :visit		# иначе страница выдаст ошибку из-за вызова в
+end					# представлении несуществующей переменной @c 
+					# она не существует потому что будет создаваться только при отправки формы
+
 
 post '/visit' do
 
@@ -66,4 +68,9 @@ end
 get '/barber/:id' do
 	@barber = Barber.find(params[:id]) # метод find принимет в качестве аргумента 
 	erb :barber					   # идентификатор и возвращает объект соответсвующий "id"
+end
+
+get '/bookings' do
+	@clients = Client.order('created_at DESC')
+	erb :bookings
 end
